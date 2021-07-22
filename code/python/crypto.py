@@ -2,10 +2,9 @@
 # Date: 07.21.2021
 # Author: Caique Azzari
 
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 
 import random
-from time import sleep
 
 banner = '''\033[34m
  __      __ __     __  __  __    __  __     __ __    ___ __  __  
@@ -28,34 +27,30 @@ def standard(length=16):
 
 standard()
 while True:
-    option = int(input('''\n\033[36mOptions\033[m
-                        1 - Regenerate Password
-                        2 - Change length
-                        3 - Exit
-                
-                        What's your choice? '''))
-    sleep(1)
+    while True:
+        try:
+            option = int(input('''\n\033[36mOptions\033[m
+                                1 - Regenerate Password
+                                2 - Change length
+                                3 - Exit
 
+                                What's your choice? '''))
+            break
+        except ValueError:
+            print('\n\033[31mERROR! Enter only integers.\033[m')
     if option == 1:
         print('')
         standard(length)
-        sleep(1)
     elif option == 2:
-        sleep(1)
         while True:
             try:
                 length = int(input('\nLength: '))
-                sleep(1)
                 print('')
                 standard(length)
-                sleep(1)
                 break
             except ValueError:
-                print('\n\033[34mERROR! Enter only integers. Max: 93.\033[m')
-            except:
-                print('\n\033[34mERROR! Enter only integers. Max: 93.\033[m')
+                print('\n\033[31mERROR! Enter only integers. Max: 93.\033[m')
     elif option == 3:
         break
     else:
-        sleep(1)
-        print('\n ERROR! Try again.')
+        print('\n\033[31mERROR! Try again.\033[m')
