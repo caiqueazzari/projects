@@ -1,54 +1,37 @@
-# Title: Random Password Generator
-# Date: 07.21.2021
-# Author: Caique Azzari
-
 #!/usr/bin/env python3
 
 import random
-
-banner = '''\033[34m
- __      __ __     __  __  __    __  __     __ __    ___ __  __  
-|__) /\ (_ (_ |  |/  \|__)|  \  / _ |_ |\ ||_ |__) /\ | /  \|__) 
-|   /--\__)__)|/\|\__/| \ |__/  \__)|__| \||__| \ /--\| \__/| \  \033[m
-'''
-
-print(banner)
-length = 16
+import string
 
 
-def standard(length=16):
-    total = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&()*+,-./:;<=>?@[\]^_`{|}~'
-    password = "".join(random.sample(total, length))
-    print('-' * (length * 2))
-    print(f'{password:^{length * 2}}')
-    print('-' * (length * 2))
+def password_generator(length):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return f'\t\033[1;38m{"".join(random.sample(characters, length))}\033[m'
 
 
-standard()
+length = 16 # Standard password length
+print('\n', password_generator(length))
+
 while True:
     while True:
         try:
-            option = int(input('''\n\033[36mOptions\033[m
-                                1 - Regenerate Password
-                                2 - Change length
-                                3 - Exit
-
-                                What's your choice? '''))
+            print('\n\033[1;36mOptions\033[m\n\n1 - Regenerate Password\n2 - Change length\n3 - Exit')
+            option = int(input("\nWhat's your choice? "))
             break
         except ValueError:
-            print('\n\033[31mERROR! Enter only integers.\033[m')
+            print('\n\033[1;31mERROR! Enter only integers.\033[m')
     if option == 1:
         print('')
-        standard(length)
+        print(password_generator(length))
     elif option == 2:
         while True:
             try:
                 length = int(input('\nLength: '))
                 print('')
-                standard(length)
+                print(password_generator(length))
                 break
             except ValueError:
-                print('\n\033[31mERROR! Enter only integers. Max: 93.\033[m')
+                print('\n\033[1;31mERROR! Enter only integers. Max: 93.\033[m')
     elif option == 3:
         break
     else:
