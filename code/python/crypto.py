@@ -35,4 +35,4 @@ while True:
     elif option == 3:
         break
     else:
-        print('\n\033[31mERROR! Try again.\033[m')
+        print('\n\033[1;31mERROR! Try again.\033[m')
